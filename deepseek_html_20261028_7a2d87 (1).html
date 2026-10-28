@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GG Design | Дизайн на заказ в игровом стиле</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --neon: #00f0ff;
+      --neon-pink: #ff2bd6;
+      --neon-purple: #a855f7;
+      --bg-dark: #05060f;
+      --bg-panel: #0e0f1f;
+      --text: #e6e8ff;
+      --text-dim: #8a8db0;
+    }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Сетка-фон */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Свечение фона */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(168, 85, 247, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(0, 240, 255, 0.12), transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1, h2, h3 { font-family: 'Orbitron', sans-serif; letter-spacing: 0.02em; }
+
+    h1 { font-size: 3rem; font-weight: 900; line-height: 1.15; }
+    h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
+
+    .glow { color: var(--neon); text-shadow: 0 0 12px rgba(0, 240, 255, 0.7), 0 0 24px rgba(0, 240, 255, 0.35); }
+    .glow-pink { color: var(--neon-pink); text-shadow: 0 0 12px rgba(255, 43, 214, 0.7); }
+
+    .section-subtitle {
+      color: var(--text-dim);
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Кнопки */
+    .btn {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: 2px solid var(--neon);
+      color: var(--neon);
+      background: rgba(0, 240, 255, 0.05);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
+    }
+    .btn:hover {
+      background: var(--neon);
+      color: #05060f;
+      box-shadow: 0 0 25px var(--neon), 0 0 50px rgba(0, 240, 255, 0.5);
+      transform: translateY(-2px);
+    }
+    .btn-pink {
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+      background: rgba(255, 43, 214, 0.05);
+      box-shadow: 0 0 15px rgba(255, 43, 214, 0.2);
+    }
+    .btn-pink:hover {
+      background: var(--neon-pink);
+      color: #05060f;
+      box-shadow: 0 0 25px var(--neon-pink), 0 0 50px rgba(255, 43, 214, 0.5);
+    }
+    .btn-vk {
+      border-color: #0077FF;
+      color: #4d9fff;
+      background: rgba(0, 119, 255, 0.08);
+      box-shadow: 0 0 15px rgba(0, 119, 255, 0.3);
+    }
+    .btn-vk:hover {
+      background: #0077FF;
+      color: #fff;
+      box-shadow: 0 0 25px #0077FF, 0 0 50px rgba(0, 119, 255, 0.5);
+    }
+
+    /* ХЕДЕР */
+    .header {
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 6, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+    .nav { display: flex; gap: 32px; align-items: center; }
+    .nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .nav a:hover { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+    .nav .btn { padding: 10px 22px; font-size: 0.8rem; }
+
+    /* HERO */
+    .hero {
+      padding: 70px 0 80px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+    }
+    .hero-content { flex: 1 1 420px; }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 4px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--neon);
+      border: 1px solid var(--neon);
+      background: rgba(0, 240, 255, 0.05);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      margin-bottom: 24px;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      margin: 24px 0 32px;
+      max-width: 540px;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    /* Игровой "экран" */
+    .hero-image {
+      flex: 1 1 320px;
+      min-height: 360px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #0e0f1f, #141533);
+      border: 2px solid var(--neon);
+      box-shadow:
+        0 0 25px rgba(0, 240, 255, 0.3),
+        inset 0 0 40px rgba(0, 240, 255, 0.06);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 40px;
+      background: linear-gradient(90deg, rgba(0,240,255,0.1), rgba(255,43,214,0.1));
+      border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 16px;
+      width: 60px;
+      height: 16px;
+      background:
+        radial-gradient(circle, var(--neon-pink) 4px, transparent 4px) 0 0/12px 12px repeat-x;
+    }
+    .hero-image .joystick {
+      filter: drop-shadow(0 0 20px var(--neon));
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* УСЛУГИ */
+    .services { padding: 80px 0; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+    }
+    .service-card {
+      background: rgba(14, 15, 31, 0.8);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 10px;
+      padding: 34px 26px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 40px; height: 3px;
+      background: var(--neon);
+      box-shadow: 0 0 12px var(--neon);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--neon);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+    }
+    .service-icon {
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+      display: block;
+      filter: drop-shadow(0 0 8px var(--neon));
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: var(--neon);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .service-card p { color: var(--text-dim); font-size: 0.95rem; }
+
+    /* РЕГИСТРАЦИЯ */
+    .cta-section { padding: 60px 0 80px; }
+    .register-box {
+      background: linear-gradient(145deg, #0e0f1f, #141533);
+      border: 2px solid var(--neon-purple);
+      border-radius: 16px;
+      padding: 50px 40px;
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.25);
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .register-box::before {
+      content: '// REGISTRATION';
+      position: absolute;
+      top: -12px; left: 24px;
+      background: var(--bg-dark);
+      padding: 0 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--neon-purple);
+    }
+    .register-box h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .register-box .reg-sub {
+      color: var(--text-dim);
+      margin-bottom: 30px;
+      font-size: 1rem;
+    }
+    .register-box .reg-sub strong { color: var(--neon); }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neon);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(5, 6, 15, 0.8);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--neon);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    }
+    .form-group input::placeholder { color: #4a4d70; }
+
+    .register-box .btn {
+      width: 100%;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      padding: 16px;
+    }
+
+    .reg-note {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .reg-success {
+      display: none;
+      padding: 20px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--neon);
+      border-radius: 8px;
+      color: var(--neon);
+      margin-top: 20px;
+      font-weight: 600;
+    }
+    .reg-success.show { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .already-registered {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0, 119, 255, 0.08);
+      border: 1px solid #0077FF;
+      border-radius: 8px;
+    }
+    .already-registered.show { display: block; animation: fadeIn 0.4s ease; }
+    .already-registered p { color: var(--text-dim); margin-bottom: 14px; font-size: 0.95rem; }
+
+    /* ФУТЕР */
+    .footer {
+      padding: 50px 0 30px;
+      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(5, 6, 15, 0.6);
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--neon); }
+    .contact-info { display: flex; flex-wrap: wrap; gap: 24px; }
+    .contact-info a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .contact-info a:hover { color: var(--neon); }
+    .contact-info i { color: var(--neon); font-size: 1.1rem; }
+    .copyright {
+      text-align: center;
+      padding-top: 36px;
+      font-size: 0.8rem;
+      color: #4a4d70;
+      letter-spacing: 0.05em;
+    }
+
+    /* АДАПТИВ */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.6rem; }
+      .header-inner { flex-direction: column; gap: 16px; }
+      .nav { gap: 18px; flex-wrap: wrap; justify-content: center; }
+      .hero { padding: 40px 0; text-align: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-image { min-height: 240px; font-size: 5rem; }
+      .register-box { padding: 36px 22px; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .contact-info { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .nav .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ХЕДЕР -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">GG<span>·</span>DESIGN</a>
+      <nav class="nav">
+        <a href="#services">Услуги</a>
+        <a href="#register">Регистрация</a>
+        <a href="#register" class="btn">Заказать</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="container hero">
+    <div class="hero-content">
+      <div class="hero-badge">🎮 LEVEL UP YOUR BRAND</div>
+      <h1>Дизайн в <span class="glow">игровом</span><br>стиле на заказ</h1>
+      <p class="hero-desc">Создам айдентику, логотипы, обложки для стримов, оформление каналов и соцсетей в стиле киберпанк, неон и гейминг. Зарегистрируйся — и я свяжусь с тобой ВКонтакте.</p>
+      <div class="hero-buttons">
+        <a href="#register" class="btn btn-pink">🚀 Зарегистрироваться</a>
+        <a href="https://vk.ru/dreinzxc" target="_blank" rel="noopener" class="btn btn-vk">
+          <i class="fab fa-vk"></i> Написать в ВК
+        </a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <span class="joystick">🕹️</span>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2><span class="glow">//</span> ЧТО Я ДЕЛАЮ</h2>
+      <p class="section-subtitle">Полный цикл игрового дизайна — от лого до готового оформления канала</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🎮</span>
+          <h3>Логотипы для геймеров</h3>
+          <p>Ники, эмблемы команд, логотипы для каналов и стримов в неоновом/пиксельном стиле.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📺</span>
+          <h3>Оформление каналов</h3>
+          <p>Шапки, баннеры, аватарки, превью для Twitch, YouTube, VK Play и соцсетей.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🖼️</span>
+          <h3>Обложки и арты</h3>
+          <p>Обложки для видео, постеры, киберспортивные арты и стилизованные баннеры.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- РЕГИСТРАЦИЯ + ВК -->
+  <section id="register" class="cta-section">
+    <div class="container">
+      <div class="register-box">
+        <h2>РЕГИСТРАЦИЯ</h2>
+        <p class="reg-sub">Заполни форму — и я свяжусь с тобой <strong>ВКонтакте</strong> в течение дня</p>
+
+        <form id="regForm" autocomplete="off">
+          <div class="form-group">
+            <label for="nick">Игровой ник / имя *</label>
+            <input type="text" id="nick" name="nick" placeholder="Например: ShadowPlayer" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="vk">Ссылка на профиль ВК (необязательно)</label>
+            <input type="url" id="vk" name="vk" placeholder="https://vk.com/username">
+          </div>
+          <button type="submit" class="btn btn-vk">
+            <i class="fab fa-vk"></i> Зарегистрироваться и перейти в ВК
+          </button>
+        </form>
+
+        <div class="reg-success" id="regSuccess">
+          ✅ Регистрация успешна! Сейчас перенаправлю тебя в мой профиль ВКонтакте...
+        </div>
+
+        <div class="already-registered" id="alreadyReg">
+          <p>👾 Похоже, ты уже регистрировался. Хочешь связаться со мной в ВК?</p>
+          <a href="https://vk.ru/dreinzxc" class="btn btn-vk" target="_blank" rel="noopener">
+            <i class="fab fa-vk"></i> Перейти в ВК
+          </a>
+        </div>
+
+        <p class="reg-note">Регистрируясь, ты соглашаешься на обработку данных. Никакого спама — только по делу 🎮</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#" class="footer-logo">GG<span>·</span>DESIGN</a>
+        <div class="contact-info">
+          <a href="https://vk.ru/dreinzxc" target="_blank" rel="noopener">
+            <i class="fab fa-vk"></i> vk.ru/dreinzxc
+          </a>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2026 GG·DESIGN — игровой дизайн на заказ. Все права защищены.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================================
+    // Ваша ссылка ВК — уже вставлена
+    // ============================================================
+    const VK_LINK = "https://vk.ru/dreinzxc";
+    const STORAGE_KEY = 'gg_design_registered_user';
+
+    // Проверяем — может, пользователь уже регистрировался
+    const savedUser = localStorage.getItem(STORAGE_KEY);
+    if (savedUser) {
+      document.getElementById('regForm').style.display = 'none';
+      document.getElementById('alreadyReg').classList.add('show');
+    }
+
+    // Обработка формы
+    document.getElementById('regForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nick = document.getElementById('nick').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const vkProfile = document.getElementById('vk').value.trim();
+
+      if (!nick || !email) {
+        alert('Пожалуйста, заполни ник и email');
+        return;
+      }
+
+      const user = {
+        nick: nick,
+        email: email,
+        vk: vkProfile || null,
+        date: new Date().toISOString()
+      };
+
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+      } catch (err) {
+        console.warn('Не удалось сохранить данные:', err);
+      }
+
+      const successEl = document.getElementById('regSuccess');
+      successEl.classList.add('show');
+      document.getElementById('regForm').style.display = 'none';
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Перенаправление в ваш ВК через 1.8 сек
+      setTimeout(() => {
+        window.location.href = VK_LINK;
+      }, 1800);
+    });
+
+    // Плавная прокрутка по якорям
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
